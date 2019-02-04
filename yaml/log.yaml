@@ -1,0 +1,32 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Logger microservice API
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/log"
+
+paths:
+  /{message_id}:
+    post:
+      operationId: api.log.post
+      summary: "Create new log entry"
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: path
+          name: message_id
+          type: "string"
+          required: true
+        - in: formData
+          name: "message"
+          type: "string"
+          required: true
+      responses:
+        200:
+          description: "Success"
+        422:
+          description: "Logger is configured incorrectly"

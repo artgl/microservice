@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Configuration API
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/configuration"
+
+paths:
+  /:
+    get:
+      operationId: api.configuration.search
+      summary: "Get list of all configuration keys"
+      responses:
+        200:
+          description: "Success"
+  /{key}:
+    get:
+      operationId: api.configuration.get
+      summary: "Get configuration key value"
+      parameters:
+        - in: path
+          name: key
+          type: "string"
+          required: true
+      responses:
+        200:
+          description: "Success"
+    put:
+      operationId: api.configuration.put
+      summary: "Create new or update existing configuration key"
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - in: path
+          name: "key"
+          type: "string"
+          required: true
+        - in: formData
+          name: "value"
+          type: "string"
+          required: true
+      responses:
+        200:
+          description: "Success"
